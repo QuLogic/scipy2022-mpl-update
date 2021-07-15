@@ -19,8 +19,8 @@ def slides():
     fig.text(0.5, 0.5, 'This entire presentation was made in Matplotlib:',
              **props)
 
-    t = fig.text(0.5, 0.4, '\nhttps://github.com/QuLogic/scipy2020-mpl-update',
+    t = fig.text(0.5, 0.4, '\nhttps://github.com/QuLogic/scipy2021-mpl-update',
                  **props)
-    t.set_url('https://github.com/QuLogic/scipy2020-mpl-update')
+    t.set_url('https://github.com/QuLogic/scipy2021-mpl-update')
 
     return fig

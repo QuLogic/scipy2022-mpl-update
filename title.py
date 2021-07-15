@@ -47,7 +47,7 @@ def create_icon_axes(fig, ax_position, lw_bars, lw_grid, lw_border, rgrid):
         ax.set_axisbelow(True)
 
         N = 7
-        arc = 2. * np.pi
+        arc = 2 * np.pi
         theta = np.arange(0.0, arc, arc / N)
         radii = np.array([2, 6, 8, 7, 4, 5, 8])
         width = np.pi / 4 * np.array([0.4, 0.4, 0.6, 0.8, 0.2, 0.5, 0.3])
@@ -98,7 +98,7 @@ def slides():
     ax_pos = (0.535, 0.52, 0.17, 0.28)
     create_icon_axes(fig, ax_pos, 1.4, 1, 2, [1, 3, 5, 7])
 
-    fig.text(0.5, 0.3, 'SciPy 2020',
+    fig.text(0.5, 0.3, 'SciPy 2021',
              fontproperties=FONT, color='C0', fontsize=72)
     fig.text(0.5, 0.2, '@matplotlib',
              fontproperties=FONT, color='C0', fontsize=72)

@@ -65,19 +65,22 @@ def slides():
 
     t = level1(0.525, f'{BULLET} Google Summer of Code')
     t.set_url(
-        'https://matplotlib.org/matplotblog/posts/introductory-gsoc2020-post/')
+        'https://matplotlib.org/matplotblog/posts/gsoc_2021_introduction/')
 
     level2(0.525,
-           '\nSidharth Bansal \N{EM dash} test baseline images relocation')
+           '\nAitik Gupta \N{EM dash} Revisiting Text/Font Handling')
 
     level1(0.375, f'{BULLET} Discourse')
 
     t = level2(0.375, '\nhttps://discourse.matplotlib.org/')
     t.set_url('https://discourse.matplotlib.org/')
 
-    level1(0.225, f'{BULLET} PyPI classifier')
+    level1(0.225, f'{BULLET} Third-party packages')
 
-    t = level2(0.225, '\nFramework :: Matplotlib')
+    t = level2(0.225, '\nPyPI classifier: Framework :: Matplotlib')
     t.set_url('https://pypi.org/search/?c=Framework+%3A%3A+Matplotlib')
+
+    t = level2(0.225, '\n\nhttps://matplotlib.org/mpl-third-party/')
+    t.set_url('https://matplotlib.org/mpl-third-party/')
 
     return fig

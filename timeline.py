@@ -68,10 +68,13 @@ def slides(mpl_path):
 
     ax.margins(y=0.1)
 
-    # Annotate range between SciPy 2019 and SciPy 2020.
-    ax.axvspan(datetime(2019, 7, 8), datetime(2020, 7, 6), alpha=0.5)
+    this_scipy = datetime(2021, 7, 15)
+    last_scipy = datetime(2020, 7, 6)
 
-    # Only plot the last 5 years before SciPy 2020.
-    ax.set_xlim(datetime(2015, 7, 6), datetime(2020, 7, 6))
+    # Annotate range between last SciPy and this SciPy.
+    ax.axvspan(last_scipy, this_scipy, alpha=0.5)
+
+    # Only plot the last 5 years before this SciPy.
+    ax.set_xlim(this_scipy.replace(year=this_scipy.year - 5), this_scipy)
 
     return fig
