@@ -2,10 +2,13 @@
 Feature highlights for Matplotlib 3.5.0.
 """
 
+import io
+
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 
-from mplslide import new_slide, slide_heading, annotate_pr_author
+from mplslide import FONT, new_slide, slide_heading, annotate_pr_author
 
 
 CODE = dict(fontfamily='monospace', fontsize=40, verticalalignment='top',
@@ -41,10 +44,48 @@ def legend_labelcolor():
     return fig
 
 
+def cvdsim():
+    """
+    Create slide for feature highlight of CVD cimulation.
+    """
+
+    fig = new_slide()
+    slide_heading(fig, '3.5 Feature: Color simulations')
+    fig.text(0.05, 0.75, 'Simulate various color vision deficiencies',
+             fontproperties=FONT, fontsize=48, alpha=0.7)
+
+    labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+    sizes = [15, 30, 45, 10]
+    explode = (0, 0.1, 0, 0)
+
+    filters = [None, 'greyscale', 'deuteranopia', 'tritanopia']
+    axs = fig.subplots(1, len(filters))
+    fig.subplots_adjust(top=0.7)
+
+    for real_ax, filt in zip(axs, filters):
+        pie, ax = plt.subplots(figsize=(4, 4))
+        ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+               shadow=True, startangle=90)
+        ax.axis('equal')
+        pie.set_agg_filter(filt)
+        img = io.BytesIO()
+        pie.savefig(img, format='png', dpi=300)
+
+        pie = Image.open(img)
+        real_ax.set_title(filt.title() if filt else 'Unaltered', fontsize=20)
+        real_ax.imshow(pie)
+        real_ax.set(xticks=[], yticks=[])
+
+    annotate_pr_author(fig, 'QuLogic', pr=20649)
+
+    return fig
+
+
 def slides():
     """
     Return slides for this section.
     """
     return (
         legend_labelcolor(),
+        cvdsim(),
     )

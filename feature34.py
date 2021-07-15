@@ -3,7 +3,6 @@ Feature highlights for Matplotlib 3.4.0.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 from mplslide import FONT, new_slide, slide_heading, annotate_pr_author
 
