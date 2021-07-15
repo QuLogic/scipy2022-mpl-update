@@ -64,6 +64,8 @@ def cvdsim():
     fig.subplots_adjust(top=0.7)
 
     for real_ax, filt in zip(axs, filters):
+        # We must export this as a separate figure, because the filters only
+        # work on full figures.
         pie, ax = plt.subplots(figsize=(4, 4))
         ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
                shadow=True, startangle=90)
