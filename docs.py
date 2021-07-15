@@ -21,9 +21,9 @@ def docs():
 
     fig.text(0.05, 0.5, "Upcoming 3.5 What's New?", **props)
     t = fig.text(0.07, 0.5,
-                 '\nhttps://matplotlib.org/devdocs/users/whats_new.html',
+                 '\nhttps://matplotlib.org/devdocs/users/next_whats_new.html',
                  **props)
-    t.set_url('https://matplotlib.org/devdocs/users/whats_new.html')
+    t.set_url('https://matplotlib.org/devdocs/users/next_whats_new.html')
     fig.text(0.05, 0.5, '\n\nOnce tagged, will be at:', **props)
     t = fig.text(0.07, 0.5,
                  '\n\n\nhttps://matplotlib.org/3.5.0/users/whats_new.html',
