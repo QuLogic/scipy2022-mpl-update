@@ -16,10 +16,10 @@ def slides():
     props = dict(fontproperties=FONT, fontsize=56, alpha=0.7,
                  verticalalignment='top')
 
-    fig.text(0.05, 0.8, 'Next feature release: 3.5', **props)
-    fig.text(0.1, 0.7, f'{BULLET} September 2021', **props)
+    fig.text(0.05, 0.8, 'Next feature release: 3.6', **props)
+    fig.text(0.1, 0.7, f'{BULLET} Soon', **props)
     fig.text(0.1, 0.6,
-             f'{BULLET} Dropping support for NumPy 1.16',
+             f'{BULLET} Dropping support for NumPy 1.17',
              **props)
     fig.text(0.1, 0.5,
              f'{BULLET} Adding PyPy wheels for all platforms',

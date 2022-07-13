@@ -22,8 +22,8 @@ check_requirements()  # noqa: F402
 from title import create_icon_axes, slides as title_slides
 from news import slides as news_slides
 from timeline import slides as history_slides
-from feature34 import slides as feature34_slides
 from feature35 import slides as feature35_slides
+# from feature36 import slides as feature36_slides
 from docs import slides as docs_slides
 from plan import slides as plan_slides
 from end import slides as end_slides
@@ -31,7 +31,7 @@ from end import slides as end_slides
 
 METADATA = {
     'Author': 'Elliott Sales de Andrade',
-    'Title': 'Matplotlib Project Update for SciPy 2021',
+    'Title': 'Matplotlib Project Update for SciPy 2022',
 }
 MPL_PATH = sys.argv[1]
 PAGES = [
@@ -39,8 +39,8 @@ PAGES = [
     (title_slides, ),
     (news_slides, ),
     (history_slides, MPL_PATH, ),
-    (feature34_slides, ),
     (feature35_slides, ),
+    # (feature36_slides, ),
     (docs_slides, ),
     (plan_slides, ),
     (end_slides, ),
@@ -60,6 +60,6 @@ with PdfPages('slides.pdf', metadata=METADATA) as pdf:
 # Linearize the PDF if qpdf is available.
 if shutil.which('qpdf') is not None:
     subprocess.run(['qpdf', 'slides.pdf', '--object-streams=generate',
-                    '--linearize', 'scipy2021-mpl-update.pdf'])
+                    '--linearize', 'scipy2022-mpl-update.pdf'])
 else:
-    shutil.copy('slides.pdf', 'scipy2021-mpl-update.pdf')
+    shutil.copy('slides.pdf', 'scipy2022-mpl-update.pdf')

@@ -10,31 +10,29 @@ def docs():
 
     slide_heading(fig, 'Documentation')
 
-    props = dict(fontproperties=FONT, fontsize=48, alpha=0.7,
-                 verticalalignment='top')
+    props = dict(fontproperties=FONT, alpha=0.7, verticalalignment='top')
 
-    fig.text(0.05, 0.7, "3.4 What's New?", **props)
-    t = fig.text(0.07, 0.7,
-                 '\nhttps://matplotlib.org/3.4.0/users/whats_new.html',
-                 **props)
-    t.set_url('https://matplotlib.org/3.4.0/users/whats_new.html')
+    url = ('https://matplotlib.org/3.5.0/users/prev_whats_new/'
+           'whats_new_3.5.0.html')
+    fig.text(0.05, 0.7, "3.5 What's New?", fontsize=48, **props)
+    t = fig.text(0.07, 0.7, f'\n\n{url}', fontsize=32, **props)
+    t.set_url(url)
 
-    fig.text(0.05, 0.5, "Upcoming 3.5 What's New?", **props)
-    t = fig.text(0.07, 0.5,
-                 '\nhttps://matplotlib.org/devdocs/users/next_whats_new.html',
-                 **props)
-    t.set_url('https://matplotlib.org/devdocs/users/next_whats_new.html')
-    fig.text(0.05, 0.5, '\n\nOnce tagged, will be at:', **props)
-    t = fig.text(0.07, 0.5,
-                 '\n\n\nhttps://matplotlib.org/3.5.0/users/whats_new.html',
-                 **props)
-    t.set_url('https://matplotlib.org/3.5.0/users/whats_new.html')
-
-    fig.text(0.05, 0.2, 'Switch to pydata-sphinx-theme', **props)
-    t = fig.text(0.07, 0.2,
-                 '\nhttps://pydata-sphinx-theme.readthedocs.io/en/latest/',
-                 **props)
+    fig.text(0.05, 0.55, 'Switch to pydata-sphinx-theme', fontsize=48, **props)
+    t = fig.text(0.07, 0.55,
+                 '\n\nhttps://pydata-sphinx-theme.readthedocs.io/en/latest/',
+                 fontsize=32, **props)
     t.set_url('https://pydata-sphinx-theme.readthedocs.io/en/latest/')
+
+    url = 'https://matplotlib.org/devdocs/users/next_whats_new.html'
+    fig.text(0.05, 0.4, "Upcoming 3.6 What's New?", fontsize=48, **props)
+    t = fig.text(0.07, 0.4, f'\n\n{url}', fontsize=32, **props)
+    t.set_url(url)
+    url = ('https://matplotlib.org/3.6.0/users/prev_whats_new/'
+           'whats_new_3.6.0.html')
+    fig.text(0.05, 0.25, 'Once tagged, will be at:', fontsize=48, **props)
+    t = fig.text(0.07, 0.25, f'\n\n{url}', fontsize=32, **props)
+    t.set_url(url)
 
     return fig
 

@@ -98,7 +98,7 @@ def slides():
     ax_pos = (0.535, 0.52, 0.17, 0.28)
     create_icon_axes(fig, ax_pos, 1.4, 1, 2, [1, 3, 5, 7])
 
-    fig.text(0.5, 0.3, 'SciPy 2021',
+    fig.text(0.5, 0.3, 'SciPy 2022',
              fontproperties=FONT, color='C0', fontsize=72)
     fig.text(0.5, 0.2, '@matplotlib',
              fontproperties=FONT, color='C0', fontsize=72)
