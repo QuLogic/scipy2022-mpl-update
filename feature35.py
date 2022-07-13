@@ -74,18 +74,29 @@ def image_antialiasing():
     slide_subfig_heading(top, '3.5: RGBA image interpolation')
     top.set_facecolor('none')
 
-    axs = bottom.subplots(2, 2)
-    axs[0, 0].imshow(a, interpolation='nearest', cmap='RdBu_r')
-    axs[0, 0].set_xlim(100, 200)
-    axs[0, 0].set_ylim(275, 175)
-    axs[0, 0].set_title('Zoom', fontsize=20)
+    axs = bottom.subplots(2, 3)
 
-    for ax, interp, space in zip(axs.flat[1:],
-                                 ['nearest', 'antialiased', 'antialiased'],
-                                 ['data', 'data', 'rgba']):
-        ax.imshow(a, interpolation=interp, interpolation_stage=space,
-                  cmap='RdBu_r')
-        ax.set_title(f"interpolation='{interp}' space='{space}'", fontsize=20)
+    for col, interp, space in zip(axs.T,
+                                  ['nearest', 'antialiased', 'antialiased'],
+                                  ['data', 'data', 'rgba']):
+        for ax in col:
+            ax.imshow(a, interpolation=interp, interpolation_stage=space,
+                      cmap='RdBu_r')
+            ax.tick_params(labelbottom=False, labelleft=False)
+
+        # Zoomed Axes on top.
+        col[0].set_xlim(100, 200)
+        col[0].set_ylim(275, 175)
+        # Title in between.
+        col[1].set_title(f"interpolation='{interp}'\n"
+                         f"interpolation_space='{space}'",
+                         fontsize=20)
+
+        # With inset Axes indicator between rows.
+        frame, connectors = col[1].indicate_inset_zoom(col[0], linewidth=3)
+        for conn in connectors:
+            conn.set_in_layout(False)
+            conn.set_linewidth(3)
 
     annotate_pr_author(fig, 'jklymak', pr=18782)
 
