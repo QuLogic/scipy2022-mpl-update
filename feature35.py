@@ -2,45 +2,92 @@
 Feature highlights for Matplotlib 3.5.0.
 """
 
-import io
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-from PIL import Image
 
-from mplslide import BULLET, FONT, new_slide, slide_heading, annotate_pr_author
+from mplslide import (
+    BULLET, FONT, new_slide, slide_heading, slide_subfig_heading,
+    annotate_pr_author)
 
 
 CODE = dict(fontfamily='monospace', fontsize=40, verticalalignment='top',
             alpha=0.7)
 
 
-def legend_labelcolor():
+def mosaic_sharing():
     """
-    Create slide for feature highlight of legend label color.
+    Create slide for mosaic Axes sharing highlight.
     """
-    plt.rcParams['legend.labelcolor'] = 'linecolor'
+    fig = new_slide(constrained_layout=True)
+    top, middle, bottom = fig.subfigures(3, 1, height_ratios=[1, 2, 3])
+    slide_subfig_heading(top, '3.5: subplot_mosaic Axes sharing')
+    top.set_facecolor('none')
 
-    fig = new_slide()
-    slide_heading(fig, '3.5 Feature: legend label color rcParam')
+    middle.text(0.05, 1, '''mosaic = [['A', [['B', 'C'], ['D', 'E']]],
+          ['F', 'G']]
+ax_dict = fig.subplot_mosaic(mosaic, sharex=True,
+                             sharey=True)
+ax_dict['A'].set(xscale='log', yscale='symlog',
+                 ylim=(-1, 10))
+    ''', **CODE)
+    middle.set_facecolor('none')
 
-    fig.text(0.05, 0.8, "plt.rcParams['legend.labelcolor'] = 'linecolor'",
-             **CODE)
+    mosaic = [
+        ['A', [['B', 'C'],
+               ['D', 'E']]],
+        ['F', 'G'],
+    ]
+    with plt.rc_context({'xtick.labelsize': 20, 'ytick.labelsize': 20}):
+        ax_dict = bottom.subplot_mosaic(mosaic, sharex=True, sharey=True)
+        ax_dict['A'].set(xscale='log', yscale='symlog', ylim=(-1, 10))
 
-    # Make some fake data.
-    a = np.arange(0, 3, .02)
-    c = np.exp(a)
-    d = c[::-1]
+    annotate_pr_author(fig, 'anntzer', pr=20107)
 
-    ax = fig.subplots()
-    fig.subplots_adjust(top=0.7)
-    ax.plot(a, c, 'g--', label='Model length', linewidth=2)
-    ax.plot(a, d, 'r:', label='Data length', linewidth=2)
+    return fig
 
-    ax.legend(loc='upper center', fontsize=20)
 
-    annotate_pr_author(fig, 'Carloscerq', pr=20084)
+def image_antialiasing():
+    """
+    Create slide for image antialiasing feature highlight.
+    """
+
+    N = 450
+    x = np.arange(N) / N - 0.5
+    y = np.arange(N) / N - 0.5
+    aa = np.ones((N, N))
+    aa[::2, :] = -1
+
+    X, Y = np.meshgrid(x, y)
+    R = np.sqrt(X**2 + Y**2)
+    f0 = 5
+    k = 100
+    a = np.sin(np.pi * 2 * (f0 * R + k * R**2 / 2))
+    # make the left hand side of this
+    a[:int(N / 2), :][R[:int(N / 2), :] < 0.4] = -1
+    a[:int(N / 2), :][R[:int(N / 2), :] < 0.3] = 1
+    aa[:, int(N / 3):] = a[:, int(N / 3):]
+    a = aa
+
+    fig = new_slide(constrained_layout=True)
+    top, bottom = fig.subfigures(2, 1, height_ratios=[1, 5])
+    slide_subfig_heading(top, '3.5: RGBA image interpolation')
+    top.set_facecolor('none')
+
+    axs = bottom.subplots(2, 2)
+    axs[0, 0].imshow(a, interpolation='nearest', cmap='RdBu_r')
+    axs[0, 0].set_xlim(100, 200)
+    axs[0, 0].set_ylim(275, 175)
+    axs[0, 0].set_title('Zoom', fontsize=20)
+
+    for ax, interp, space in zip(axs.flat[1:],
+                                 ['nearest', 'antialiased', 'antialiased'],
+                                 ['data', 'data', 'rgba']):
+        ax.imshow(a, interpolation=interp, interpolation_stage=space,
+                  cmap='RdBu_r')
+        ax.set_title(f"interpolation='{interp}' space='{space}'", fontsize=20)
+
+    annotate_pr_author(fig, 'jklymak', pr=18782)
 
     return fig
 
@@ -96,6 +143,7 @@ def slides():
     Return slides for this section.
     """
     return (
-        legend_labelcolor(),
+        mosaic_sharing(),
+        image_antialiasing(),
         misc(),
     )

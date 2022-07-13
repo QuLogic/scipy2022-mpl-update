@@ -60,7 +60,7 @@ def check_requirements():
         sys.exit('Calibri or Carlito font must be installed.')
 
 
-def new_slide(plain=False):
+def new_slide(plain=False, **kwargs):
     """
     Create a new slide.
 
@@ -70,7 +70,7 @@ def new_slide(plain=False):
         Whether to leave out any slide decorations (e.g., logo).
     """
 
-    fig = plt.figure(figsize=FIGSIZE, dpi=DPI)
+    fig = plt.figure(figsize=FIGSIZE, dpi=DPI, **kwargs)
     fig.mplslide_props = {'plain': plain}
     return fig
 
@@ -88,6 +88,22 @@ def slide_heading(fig, text):
     """
 
     fig.text(0.05, 0.85, text, color='C0', fontproperties=FONT, fontsize=72)
+
+
+def slide_subfig_heading(subfig, text):
+    """
+    Add a heading to a slide in a subfigure, using a common style.
+
+    Parameters
+    ----------
+    subfig : matplotlib.figure.SubFigure
+        The slide subfigure, usually from the top a Figure.
+    text : str
+        The text to place in the heading.
+    """
+
+    subfig.text(0.05, 0.5, text, color='C0',
+                fontproperties=FONT, fontsize=72, verticalalignment='center')
 
 
 def annotate_pr_author(fig, *authors, pr=None):
