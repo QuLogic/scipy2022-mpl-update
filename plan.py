@@ -2,7 +2,7 @@
 Future plans.
 """
 
-from mplslide import BULLET, FONT, new_slide, slide_heading
+from mplslide import FONT, new_slide, slide_heading
 
 
 def slides():
@@ -13,21 +13,18 @@ def slides():
 
     slide_heading(fig, 'Future Plans')
 
-    props = dict(fontproperties=FONT, fontsize=56, alpha=0.7,
-                 verticalalignment='top')
+    props = dict(fontproperties=FONT, alpha=0.7, verticalalignment='top')
 
-    fig.text(0.05, 0.8, 'Next feature release: 3.6', **props)
-    fig.text(0.1, 0.7, f'{BULLET} Soon', **props)
-    fig.text(0.1, 0.6,
-             f'{BULLET} Dropping support for NumPy 1.17',
-             **props)
-    fig.text(0.1, 0.5,
-             f'{BULLET} Adding PyPy wheels for all platforms',
-             **props)
+    url = 'https://matplotlib.org/devdocs/users/next_whats_new.html'
+    fig.text(0.05, 0.7, "Upcoming 3.6 What's New?", fontsize=56, **props)
+    t = fig.text(0.07, 0.7, f'\n\n{url}', fontsize=32, **props)
+    t.set_url(url)
+    url = ('https://matplotlib.org/3.6.0/users/prev_whats_new/'
+           'whats_new_3.6.0.html')
+    fig.text(0.05, 0.5, 'Once tagged, will be at:', fontsize=56, **props)
+    t = fig.text(0.07, 0.5, f'\n\n{url}', fontsize=32, **props)
+    t.set_url(url)
 
-    fig.text(0.05, 0.2, 'Check out our blog!', **props)
-    t = fig.text(0.1, 0.2, '\nhttps://matplotlib.org/matplotblog/',
-                 **props)
-    t.set_url('https://matplotlib.org/matplotblog/')
+    fig.text(0.05, 0.3, 'Your Contribution?', fontsize=56, **props)
 
     return fig

@@ -146,6 +146,12 @@ def misc():
     ax_old.text(1.02, 0.5, "0.5", transform=ax_old.transAxes,
                 verticalalignment="center", horizontalalignment="left")
 
+    url = ('https://matplotlib.org/3.5.0/users/prev_whats_new/'
+           'whats_new_3.5.0.html')
+    fig.text(0.05, 0.225, "3.5 What's New?", **props)
+    t = fig.text(0.07, 0.225, f'\n\n{url}', **{**props, 'fontsize': 32})
+    t.set_url(url)
+
     return fig
 
 
