@@ -56,28 +56,32 @@ def slides():
     level1 = partial(bullet_level1, fig)
     level2 = partial(bullet_level2, fig)
 
-    t = level1(0.8, f'{BULLET} Chan Zuckerberg Initiative grant')
+    t = level1(
+        0.8,
+        f'{BULLET} Chan Zuckerberg Initiative grant \N{EM dash} EOSS cycle 4')
     t.set_url('https://matplotlib.org/matplotblog/posts/matplotlib-rsef/')
-    level1(0.8,
-           '\n    \N{EM dash} Essential Open Source Software for Science '
-           '(cycle 4)')
 
     level2(0.8,
-           '\n\nThomas Caswell, Elliott Sales de Andrade')
+           '\nThomas Caswell, Elliott Sales de Andrade')
 
-    t = level1(0.6, f'{BULLET} NASA ROSES-OSTFL 2020')
+    t = level1(0.675, f'{BULLET} NASA ROSES-OSTFL 2020')
     t.set_url('https://discourse.matplotlib.org/t/'
               'maplotlib-selected-for-nasa-roses-ostfl-2020')
-    level1(0.6,
+    level1(0.675,
            '\n    \N{EM dash} Revamping Matplotlib for Modern Data Structures')
-    level2(0.6, '\n\nKyle Sunden')
+    level2(0.675, '\n\nKyle Sunden')
 
-    t = level1(0.4, f'{BULLET} Contributor Experience Leads')
+    t = level1(0.475, f'{BULLET} Contributor Experience Leads')
     t.set_url(
         'https://chanzuckerberg.com/eoss/proposals/'
         'advancing-an-inclusive-culture-in-the-scientific-python-ecosystem/')
 
-    level2(0.4, '\nMelissa Mendonça and Noa Tamir')
+    level2(0.475, '\nMelissa Mendonça and Noa Tamir')
+
+    t = level1(
+        0.35,
+        f'{BULLET} New Contributors Meeting (first Tuesday of month)')
+    t.set_url('https://hackmd.io/@matplotlib/SJ3oc8oqq')
 
     level1(0.275,
            f'{BULLET} Moved documentation from GitHub Pages to DigitalOcean')

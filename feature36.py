@@ -47,10 +47,11 @@ def font_fallback():
     # backends, not the PDF backend.
     fig = plt.figure(figsize=(19.2, 10.8), dpi=100)
     for y, family in [
-            (0.7, ['WenQuanYi Zen Hei']),
-            (0.55, ['Noto Sans CJK JP']),
-            (0.3, ['DejaVu Sans', 'Noto Sans CJK JP']),
-            (0.15, ['DejaVu Sans', 'WenQuanYi Zen Hei'])]:
+            (0.8, ['WenQuanYi Zen Hei']),
+            (0.65, ['Noto Sans CJK JP']),
+            (0.45, ['DejaVu Sans']),
+            (0.25, ['DejaVu Sans', 'Noto Sans CJK JP']),
+            (0.1, ['DejaVu Sans', 'WenQuanYi Zen Hei'])]:
         fig.text(0.05, y, f'There are 几个汉字 in between!\n{family}',
                  family=family, fontsize=48)
 
